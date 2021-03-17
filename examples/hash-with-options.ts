@@ -1,9 +1,7 @@
-import { hash, Variant, Version, ThreadMode } from "../lib/dev.ts";
+import { hash, ThreadMode, Variant, Version } from "../lib/dev.ts";
 import { encode } from "../lib/deps.ts";
 
-let salt = crypto.getRandomValues(
-  new Uint8Array(20),
-);
+let salt = crypto.getRandomValues(new Uint8Array(20));
 
 let secret = encode("my-super-secret");
 

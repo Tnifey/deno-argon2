@@ -1,4 +1,7 @@
-import { bench, runBenchmarks } from "https://deno.land/std@v0.64.0/testing/bench.ts";
+import {
+  bench,
+  runBenchmarks,
+} from "https://deno.land/std@0.87.0/testing/bench.ts";
 
 import { ThreadMode } from "../lib/common.ts";
 import { installPlugin } from "../lib/internal.ts";
@@ -19,9 +22,7 @@ bench({
   runs: 100,
   async func(handler) {
     handler.start();
-    await hash(
-      password,
-    );
+    await hash(password);
     handler.stop();
   },
 });
@@ -34,10 +35,7 @@ bench({
       new Uint8Array(Math.max(8, Math.random() * 32)),
     );
     handler.start();
-    await hash(
-      password,
-      { salt },
-    );
+    await hash(password, { salt });
     handler.stop();
   },
 });
@@ -56,14 +54,11 @@ bench({
       hashedAt: Date.now(),
     };
     handler.start();
-    await hash(
-      password,
-      {
-        salt,
-        secret,
-        data,
-      },
-    );
+    await hash(password, {
+      salt,
+      secret,
+      data,
+    });
     handler.stop();
   },
 });
@@ -73,12 +68,9 @@ bench({
   runs: 100,
   async func(handler) {
     handler.start();
-    await hash(
-      password,
-      {
-        memoryCost: 1024,
-      },
-    );
+    await hash(password, {
+      memoryCost: 1024,
+    });
     handler.stop();
   },
 });
@@ -88,12 +80,9 @@ bench({
   runs: 100,
   async func(handler) {
     handler.start();
-    await hash(
-      password,
-      {
-        timeCost: 6,
-      },
-    );
+    await hash(password, {
+      timeCost: 6,
+    });
     handler.stop();
   },
 });
@@ -103,13 +92,10 @@ bench({
   runs: 100,
   async func(handler) {
     handler.start();
-    await hash(
-      password,
-      {
-        threadMode: ThreadMode.Parallel,
-        lanes: 16,
-      },
-    );
+    await hash(password, {
+      threadMode: ThreadMode.Parallel,
+      lanes: 16,
+    });
     handler.stop();
   },
 });
@@ -119,13 +105,10 @@ bench({
   runs: 100,
   async func(handler) {
     handler.start();
-    await hash(
-      password,
-      {
-        threadMode: ThreadMode.Sequential,
-        lanes: 16,
-      },
-    );
+    await hash(password, {
+      threadMode: ThreadMode.Sequential,
+      lanes: 16,
+    });
     handler.stop();
   },
 });
@@ -135,10 +118,7 @@ bench({
   runs: 100,
   async func(handler) {
     handler.start();
-    await verify(
-      hashed,
-      password,
-    );
+    await verify(hashed, password);
     handler.stop();
   },
 });

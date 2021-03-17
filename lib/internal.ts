@@ -1,7 +1,7 @@
-import { encode, decode, prepare } from "./deps.ts";
+import { decode, encode, prepare } from "./deps.ts";
 
-import { MIN_SALT_SIZE, HashOptions } from "./common.ts";
-import { Argon2ErrorType, Argon2Error } from "./error.ts";
+import { HashOptions, MIN_SALT_SIZE } from "./common.ts";
+import { Argon2Error, Argon2ErrorType } from "./error.ts";
 
 interface InstallPluginConfig {
   buildPlugin: "dev" | "release";
