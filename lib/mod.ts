@@ -5,7 +5,7 @@ export * from "./common.ts";
 export * from "./error.ts";
 
 let plugin = await installPlugin(
-  `https://github.com/fdionisi/deno-argon2/releases/download/v${version()}`,
+  `https://github.com/tnifey/deno-argon2/releases/download/v${version()}`,
   {
     printLog: false,
     checkCache: true,
@@ -64,9 +64,6 @@ export async function hash(
  * @param hash
  * @param password
  */
-export async function verify(
-  hash: string,
-  password: string,
-) {
+export async function verify(hash: string, password: string) {
   return plugin.verify(hash, password);
 }
